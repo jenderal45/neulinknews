@@ -19,18 +19,31 @@
             line-height: 1.6;
         }
 
+        /* HEADER */
         header {
             background: #020617;
-            padding: 20px 40px;
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #1e293b;
         }
 
-        header h1 {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            height: 46px;
+            width: auto;
+        }
+
+        .brand h1 {
             color: #38bdf8;
             font-size: 24px;
+            font-weight: 700;
         }
 
         nav a {
@@ -44,6 +57,7 @@
             color: #38bdf8;
         }
 
+        /* CONTENT */
         .container {
             padding: 40px;
             max-width: 1200px;
@@ -75,13 +89,13 @@
             background: #020617;
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #1e293b;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .news-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.4);
         }
 
         .news-card img {
@@ -108,7 +122,6 @@
         .news-content p {
             margin-top: 10px;
             font-size: 15px;
-            color: #e5e7eb;
         }
 
         .news-content a {
@@ -119,6 +132,7 @@
             font-weight: bold;
         }
 
+        /* FOOTER */
         footer {
             background: #020617;
             text-align: center;
@@ -128,18 +142,32 @@
             font-size: 14px;
             border-top: 1px solid #1e293b;
         }
+
+        /* RESPONSIVE */
+        @media(max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>NeulinkNews</h1>
+    <div class="brand">
+        <img src="img/logo.png" alt="NeulinkNews Logo">
+        <h1>NeulinkNews</h1>
+    </div>
     <nav>
         <a href="#">Home</a>
+        <a href="#">Nasional</a>
+        <a href="#">Teknologi</a>
         <a href="#">Ekonomi</a>
-        <a href="#">Bisnis</a>
-        <a href="#">Politik</a>
-        <a href="#">Filsafat</a>
         <a href="#">Kontak</a>
     </nav>
 </header>
@@ -147,27 +175,27 @@
 <section class="container">
     <div class="headline">
         <h2>Berita Terkini & Terpercaya</h2>
-        <p>Menyajikan informasi aktual dari berbagai sektor penting</p>
+        <p>Menyajikan informasi aktual dari berbagai sektor strategis</p>
     </div>
 
     <div class="news-grid">
 
         <div class="news-card">
-            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7" alt="Infrastruktur Digital">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7" alt="Digital">
             <div class="news-content">
                 <h3>Percepatan Infrastruktur Digital Nasional</h3>
                 <small>25 Desember 2025 | Nasional</small>
-                <p>Pemerintah mempercepat pembangunan infrastruktur digital untuk meningkatkan konektivitas internet dan pelayanan publik di berbagai daerah.</p>
+                <p>Pemerintah mendorong pemerataan infrastruktur digital untuk mendukung layanan publik dan ekonomi berbasis teknologi.</p>
                 <a href="#">Baca Selengkapnya →</a>
             </div>
         </div>
 
         <div class="news-card">
-            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231" alt="Energi Terbarukan">
+            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231" alt="Energi">
             <div class="news-content">
-                <h3>Energi Terbarukan Jadi Fokus Investasi</h3>
+                <h3>Energi Terbarukan Jadi Prioritas Investasi</h3>
                 <small>25 Desember 2025 | Ekonomi</small>
-                <p>Investasi pada sektor energi terbarukan meningkat sebagai upaya mencapai ketahanan energi dan pengurangan emisi karbon.</p>
+                <p>Sektor energi bersih menjadi fokus utama investasi nasional demi ketahanan energi dan keberlanjutan lingkungan.</p>
                 <a href="#">Baca Selengkapnya →</a>
             </div>
         </div>
@@ -177,7 +205,7 @@
             <div class="news-content">
                 <h3>Layanan Kesehatan Digital Diperluas</h3>
                 <small>25 Desember 2025 | Kesehatan</small>
-                <p>Pemerintah memperluas layanan telemedisin untuk menjangkau masyarakat di wilayah terpencil dan meningkatkan kualitas layanan kesehatan.</p>
+                <p>Pemanfaatan teknologi kesehatan memperluas akses layanan medis, terutama bagi masyarakat di wilayah terpencil.</p>
                 <a href="#">Baca Selengkapnya →</a>
             </div>
         </div>
@@ -186,9 +214,8 @@
 </section>
 
 <footer>
-    © 2025 NeulinkNews | All Rights Reserved
+    © 2025 NeulinkNews • All Rights Reserved
 </footer>
 
 </body>
 </html>
-
