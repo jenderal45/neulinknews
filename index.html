@@ -3,264 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeulinkNews | Portal Video Berita</title>
+
+<!-- ===== SEO & GOOGLE NEWS ===== -->
+<title>Neulink News – For All Everyone</title>
+<meta name="description" content="Neulink News adalah media digital independen yang menyajikan berita, video, dan informasi aktual untuk semua kalangan.">
+<meta name="keywords" content="Neulink News, Media Digital, Berita Video, News Indonesia">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Neulink News – For All Everyone">
+<meta property="og:description" content="Media digital berbasis video & informasi aktual.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/neulink-logo-saja.png">
+
+<link rel="icon" href="img/neulink-logo-saja.png">
 
 <style>
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root{
+    --primary:#00b4d8;
+    --dark:#0b0f14;
+    --card:#131a22;
+    --text:#ffffff;
+    --muted:#9aa4af;
 }
 
-/* BASE */
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-    font-family:'Segoe UI',Tahoma,sans-serif;
-    background:#020617;
-    color:#e5e7eb;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--dark);
+    color:var(--text);
     line-height:1.6;
 }
 
-/* ================= HEADER ================= */
+/* ===== STICKY HEADER ===== */
 header{
-    background:#020617;
-    padding:18px 40px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(11,15,20,.95);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid #1f2a36;
+}
+
+.header-wrap{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 30px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    border-bottom:2px solid #0EA5E9;
-    flex-wrap:wrap;
 }
 
 .brand{
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:12px;
 }
 
 .brand img{
     height:48px;
-}
-
-.brand-text{
-    display:flex;
-    flex-direction:column;
+    filter:brightness(0) invert(1);
 }
 
 .brand-text h1{
-    color:#0EA5E9;
-    font-size:26px;
-    font-weight:800;
-    line-height:1.1;
+    font-size:24px;
+    color:var(--primary);
 }
 
 .tagline{
-    margin-top:4px;
-    font-size:12px;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
-    color:#38BDF8;
-}
-
-/* NAV */
-nav{
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:1px;
 }
 
 nav a{
-    color:#e5e7eb;
+    color:#fff;
     text-decoration:none;
-    margin-left:20px;
-    font-weight:500;
-    transition:.3s;
+    margin-left:25px;
+    font-size:15px;
 }
+nav a:hover{color:var(--primary)}
 
-nav a:hover{
-    color:#38BDF8;
+/* ===== HERO ===== */
+.hero{
+    padding:70px 20px;
+    text-align:center;
 }
-
-/* ================= CONTENT ================= */
-.container{
-    padding:50px 40px;
-    max-width:1200px;
+.hero h2{
+    font-size:36px;
+    margin-bottom:12px;
+}
+.hero p{
+    color:var(--muted);
+    max-width:650px;
     margin:auto;
 }
 
-.headline{
-    text-align:center;
-    margin-bottom:50px;
+/* ===== HIGHLIGHT ===== */
+.highlight{
+    max-width:1200px;
+    margin:40px auto;
+    padding:0 20px;
 }
-
-.headline h2{
-    font-size:34px;
-    color:#0EA5E9;
-}
-
-.headline p{
-    color:#94A3B8;
-    margin-top:10px;
-    font-size:15px;
-}
-
-/* ================= VIDEO GRID ================= */
-.news-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-}
-
-.news-card{
-    background:#020617;
-    border-radius:14px;
+.highlight-card{
+    background:linear-gradient(135deg,#003a47,#0a9396);
+    border-radius:16px;
     overflow:hidden;
-    border:1px solid rgba(14,165,233,.6);
-    transition:.3s;
 }
-
-.news-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 40px rgba(14,165,233,.25);
-}
-
-.news-card iframe{
+.highlight iframe{
     width:100%;
-    height:220px;
-    border:none;
+    height:420px;
 }
-
-.news-content{
-    padding:20px;
+.highlight-content{
+    padding:25px;
 }
-
-.news-content h3{
-    color:#38BDF8;
-    font-size:18px;
-    margin-bottom:8px;
-}
-
-.news-content small{
-    color:#94A3B8;
-    font-size:13px;
-}
-
-.news-content p{
-    margin-top:10px;
-    font-size:15px;
-}
-
-/* ================= SOCIAL ================= */
-.social-section{
-    margin-top:70px;
-    text-align:center;
-}
-
-.social-section h3{
-    color:#0EA5E9;
-    margin-bottom:25px;
+.highlight-content h3{
     font-size:24px;
 }
 
-.social-links{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
+/* ===== NEWS GRID ===== */
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px;
 }
-
-.social-links a{
-    padding:14px 34px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-    color:#fff;
+.news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+.news-card{
+    background:var(--card);
+    border-radius:14px;
+    overflow:hidden;
     transition:.3s;
+    cursor:pointer;
 }
-
-.social-links a:hover{
-    transform:translateY(-4px);
-    opacity:.9;
+.news-card:hover{transform:translateY(-6px)}
+.news-card iframe{
+    width:100%;
+    height:200px;
 }
-
-.yt{background:#FF0000}
-.ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}
-.tt{background:#010101}
-
-/* ================= FOOTER ================= */
-footer{
-    margin-top:80px;
-    padding:25px;
-    text-align:center;
-    border-top:1px solid #0EA5E9;
-    color:#94A3B8;
+.news-content{
+    padding:18px;
+}
+.news-content h3{
+    font-size:18px;
+    margin-bottom:8px;
+}
+.news-content p{
     font-size:14px;
+    color:var(--muted);
 }
 
-/* ================= RESPONSIVE ================= */
-
-/* MOBILE */
-@media (max-width:600px){
-    header{
-        padding:16px 20px;
-        justify-content:center;
-        gap:15px;
-    }
-
-    .brand{
-        justify-content:center;
-        text-align:center;
-    }
-
-    .brand img{
-        height:42px;
-    }
-
-    .brand-text h1{
-        font-size:22px;
-    }
-
-    .tagline{
-        font-size:11px;
-    }
-
-    nav{
-        width:100%;
-        justify-content:center;
-        gap:12px;
-    }
-
-    nav a{
-        margin:0;
-        font-size:14px;
-    }
-
-    .container{
-        padding:35px 20px;
-    }
-
-    .headline h2{
-        font-size:26px;
-    }
-
-    .headline p{
-        font-size:14px;
-    }
-
-    .news-grid{
-        grid-template-columns:1fr;
-    }
-
-    .news-card iframe{
-        height:200px;
-    }
+/* ===== DETAIL PAGE ===== */
+#detail{
+    display:none;
+    padding:60px 20px;
+}
+#detail iframe{
+    width:100%;
+    height:450px;
+    border-radius:14px;
+}
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    color:var(--primary);
+    cursor:pointer;
 }
 
-/* TABLET */
-@media (min-width:601px) and (max-width:1024px){
-    .news-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+/* ===== SOCIAL ===== */
+.social{
+    text-align:center;
+    padding:50px 20px;
+}
+.social a{
+    display:inline-block;
+    margin:10px;
+    padding:14px 30px;
+    background:var(--primary);
+    color:#000;
+    border-radius:30px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:#070a0f;
+    text-align:center;
+    padding:20px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+    .header-wrap{flex-direction:column;gap:10px}
+    nav{margin-top:10px}
+    .highlight iframe{height:230px}
+    #detail iframe{height:230px}
 }
 </style>
 </head>
@@ -268,77 +213,100 @@ footer{
 <body>
 
 <header>
+<div class="header-wrap">
     <div class="brand">
-        <img src="img/neulink-logo-saja.png" alt="NeulinkNews Logo">
+        <img src="img/neulink-logo-saja.png">
         <div class="brand-text">
-            <h1>NeulinkNews</h1>
-            <span class="tagline">for all everyone</span>
+            <h1>Neulink News</h1>
+            <div class="tagline">FOR ALL EVERYONE</div>
         </div>
     </div>
-
     <nav>
-        <a href="#">Home</a>
-        <a href="https://www.youtube.com/@NeulinkNews" target="_blank">YouTube</a>
-        <a href="https://www.instagram.com/neulinknews/" target="_blank">Instagram</a>
-        <a href="https://www.tiktok.com/@neulinknews" target="_blank">TikTok</a>
+        <a href="#home">Home</a>
+        <a href="#news">Video</a>
+        <a href="#social">Social</a>
     </nav>
+</div>
 </header>
 
-<section class="container">
+<section class="hero" id="home">
+<h2>Media Digital Berbasis Video</h2>
+<p>Menyajikan informasi aktual, edukatif, dan inspiratif untuk semua.</p>
+</section>
 
-    <div class="headline">
-        <h2>NeulinkNews</h2>
-        <p>Portal berita berbasis video dari omnichannel resmi NeulinkNews</p>
-    </div>
+<!-- ===== HIGHLIGHT VIDEO TERBARU ===== -->
+<section class="highlight" id="highlight">
+<div class="highlight-card">
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=NeulinkNews" allowfullscreen></iframe>
+<div class="highlight-content">
+<h3>🎥 Video Terbaru Neulink News</h3>
+</div>
+</div>
+</section>
 
-    <div class="news-grid">
+<!-- ===== NEWS GRID ===== -->
+<section class="container" id="news">
+<div class="news-grid">
 
-        <!-- BERITA NASIONAL -->
-        <div class="news-card">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvN6J9xKQD1IbqVearTOxJ_R" allowfullscreen></iframe>
-            <div class="news-content">
-                <h3>Berita Nasional Terkini</h3>
-                <small>YouTube • NeulinkNews</small>
-                <p>Liputan aktual isu nasional, kebijakan publik, dan dinamika sosial politik.</p>
-            </div>
-        </div>
+<div class="news-card" onclick="openDetail('https://www.youtube.com/embed?listType=user_uploads&list=NeulinkNews')">
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=NeulinkNews"></iframe>
+<div class="news-content">
+<h3>Update Terkini Nasional</h3>
+<p>Berita dan isu strategis Indonesia.</p>
+</div>
+</div>
 
-        <!-- EKONOMI & BISNIS -->
-        <div class="news-card">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvPVn7dDA3PhUcsDJlyBj2VQ" allowfullscreen></iframe>
-            <div class="news-content">
-                <h3>Ekonomi & Bisnis</h3>
-                <small>YouTube • NeulinkNews</small>
-                <p>Analisis ekonomi, dunia usaha, UMKM, dan kebijakan strategis.</p>
-            </div>
-        </div>
+<div class="news-card" onclick="openDetail('https://www.youtube.com/embed?listType=user_uploads&list=NeulinkNews')">
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=NeulinkNews"></iframe>
+<div class="news-content">
+<h3>Isu Global & Internasional</h3>
+<p>Dunia dalam satu sudut pandang.</p>
+</div>
+</div>
 
-        <!-- OPINI FILSAFAT -->
-        <div class="news-card">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvMWu7T5fEB1u8MJ0qTU54VD" allowfullscreen></iframe>
-            <div class="news-content">
-                <h3>Opini & Filsafat Publik</h3>
-                <small>YouTube • NeulinkNews</small>
-                <p>Diskusi pemikiran kritis, filsafat sosial, dan refleksi kebangsaan.</p>
-            </div>
-        </div>
+<div class="news-card" onclick="openDetail('https://www.youtube.com/embed?listType=user_uploads&list=NeulinkNews')">
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=NeulinkNews"></iframe>
+<div class="news-content">
+<h3>Opini & Analisis</h3>
+<p>Mengulas isu dengan perspektif kritis.</p>
+</div>
+</div>
 
-    </div>
+</div>
+</section>
 
-    <div class="social-section">
-        <h3>Ikuti NeulinkNews</h3>
-        <div class="social-links">
-            <a href="https://www.youtube.com/@NeulinkNews" target="_blank" class="yt">YouTube</a>
-            <a href="https://www.instagram.com/neulinknews/" target="_blank" class="ig">Instagram</a>
-            <a href="https://www.tiktok.com/@neulinknews" target="_blank" class="tt">TikTok</a>
-        </div>
-    </div>
+<!-- ===== DETAIL VIDEO ===== -->
+<section id="detail" class="container">
+<span class="back-btn" onclick="backHome()">← Kembali</span>
+<iframe id="detailVideo" src=""></iframe>
+</section>
 
+<section class="social" id="social">
+<h2>Ikuti Neulink News</h2>
+<br>
+<a href="https://www.youtube.com/@NeulinkNews" target="_blank">YouTube</a>
+<a href="https://www.instagram.com/neulinknews/" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@neulinknews" target="_blank">TikTok</a>
 </section>
 
 <footer>
-    © 2025 NeulinkNews • Digital Video News Platform
+© 2025 Neulink News. All rights reserved.
 </footer>
+
+<script>
+function openDetail(src){
+    document.getElementById("news").style.display="none";
+    document.getElementById("highlight").style.display="none";
+    document.getElementById("detail").style.display="block";
+    document.getElementById("detailVideo").src=src;
+    window.scrollTo(0,0);
+}
+function backHome(){
+    document.getElementById("news").style.display="block";
+    document.getElementById("highlight").style.display="block";
+    document.getElementById("detail").style.display="none";
+}
+</script>
 
 </body>
 </html>
