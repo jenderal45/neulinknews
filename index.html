@@ -6,15 +6,22 @@
 <title>NeulinkNews | Portal Video Berita</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
+/* BASE */
 body{
     font-family:'Segoe UI',Tahoma,sans-serif;
     background:#020617;
     color:#e5e7eb;
+    line-height:1.6;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
     background:#020617;
     padding:18px 40px;
@@ -22,6 +29,7 @@ header{
     justify-content:space-between;
     align-items:center;
     border-bottom:2px solid #0EA5E9;
+    flex-wrap:wrap;
 }
 
 .brand{
@@ -34,7 +42,6 @@ header{
     height:48px;
 }
 
-/* BRAND TEXT */
 .brand-text{
     display:flex;
     flex-direction:column;
@@ -56,18 +63,25 @@ header{
 }
 
 /* NAV */
+nav{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
 nav a{
     color:#e5e7eb;
     text-decoration:none;
     margin-left:20px;
     font-weight:500;
+    transition:.3s;
 }
 
 nav a:hover{
     color:#38BDF8;
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
 .container{
     padding:50px 40px;
     max-width:1200px;
@@ -87,9 +101,10 @@ nav a:hover{
 .headline p{
     color:#94A3B8;
     margin-top:10px;
+    font-size:15px;
 }
 
-/* VIDEO GRID */
+/* ================= VIDEO GRID ================= */
 .news-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -127,6 +142,7 @@ nav a:hover{
 
 .news-content small{
     color:#94A3B8;
+    font-size:13px;
 }
 
 .news-content p{
@@ -134,7 +150,7 @@ nav a:hover{
     font-size:15px;
 }
 
-/* SOCIAL */
+/* ================= SOCIAL ================= */
 .social-section{
     margin-top:70px;
     text-align:center;
@@ -158,7 +174,7 @@ nav a:hover{
     border-radius:30px;
     text-decoration:none;
     font-weight:bold;
-    color:white;
+    color:#fff;
     transition:.3s;
 }
 
@@ -171,7 +187,7 @@ nav a:hover{
 .ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}
 .tt{background:#010101}
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
     margin-top:80px;
     padding:25px;
@@ -181,10 +197,70 @@ footer{
     font-size:14px;
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-    header{flex-direction:column;gap:15px}
-    nav a{margin:0 10px}
+/* ================= RESPONSIVE ================= */
+
+/* MOBILE */
+@media (max-width:600px){
+    header{
+        padding:16px 20px;
+        justify-content:center;
+        gap:15px;
+    }
+
+    .brand{
+        justify-content:center;
+        text-align:center;
+    }
+
+    .brand img{
+        height:42px;
+    }
+
+    .brand-text h1{
+        font-size:22px;
+    }
+
+    .tagline{
+        font-size:11px;
+    }
+
+    nav{
+        width:100%;
+        justify-content:center;
+        gap:12px;
+    }
+
+    nav a{
+        margin:0;
+        font-size:14px;
+    }
+
+    .container{
+        padding:35px 20px;
+    }
+
+    .headline h2{
+        font-size:26px;
+    }
+
+    .headline p{
+        font-size:14px;
+    }
+
+    .news-grid{
+        grid-template-columns:1fr;
+    }
+
+    .news-card iframe{
+        height:200px;
+    }
+}
+
+/* TABLET */
+@media (min-width:601px) and (max-width:1024px){
+    .news-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 </style>
 </head>
@@ -214,49 +290,41 @@ footer{
         <h2>NeulinkNews</h2>
         <p>Portal berita berbasis video dari omnichannel resmi NeulinkNews</p>
     </div>
-    
+
     <div class="news-grid">
-    
+
         <!-- BERITA NASIONAL -->
         <div class="news-card">
-            <iframe 
-                src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvN6J9xKQD1IbqVearTOxJ_R"
-                allowfullscreen>
-            </iframe>
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvN6J9xKQD1IbqVearTOxJ_R" allowfullscreen></iframe>
             <div class="news-content">
                 <h3>Berita Nasional Terkini</h3>
                 <small>YouTube • NeulinkNews</small>
                 <p>Liputan aktual isu nasional, kebijakan publik, dan dinamika sosial politik.</p>
             </div>
         </div>
-    
+
         <!-- EKONOMI & BISNIS -->
         <div class="news-card">
-            <iframe 
-                src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvPVn7dDA3PhUcsDJlyBj2VQ"
-                allowfullscreen>
-            </iframe>
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvPVn7dDA3PhUcsDJlyBj2VQ" allowfullscreen></iframe>
             <div class="news-content">
                 <h3>Ekonomi & Bisnis</h3>
                 <small>YouTube • NeulinkNews</small>
                 <p>Analisis ekonomi, dunia usaha, UMKM, dan kebijakan strategis.</p>
             </div>
         </div>
-    
-        <!-- OPINI FILSAFAT PUBLIK -->
+
+        <!-- OPINI FILSAFAT -->
         <div class="news-card">
-            <iframe 
-                src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvMWu7T5fEB1u8MJ0qTU54VD"
-                allowfullscreen>
-            </iframe>
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvMWu7T5fEB1u8MJ0qTU54VD" allowfullscreen></iframe>
             <div class="news-content">
                 <h3>Opini & Filsafat Publik</h3>
                 <small>YouTube • NeulinkNews</small>
                 <p>Diskusi pemikiran kritis, filsafat sosial, dan refleksi kebangsaan.</p>
             </div>
         </div>
+
     </div>
-    
+
     <div class="social-section">
         <h3>Ikuti NeulinkNews</h3>
         <div class="social-links">
@@ -274,4 +342,3 @@ footer{
 
 </body>
 </html>
-
