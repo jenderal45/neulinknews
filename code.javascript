@@ -112,12 +112,8 @@ function updateLanguage() {
     loadWrittenNews(); // Reload news in new language
 
     // Update article if on article.html
-    const urlParams = new URLSearchParams(window.location.search);
-    const articleId = urlParams.get('id');
-    if (articleId && articles[articleId]) {
-        const article = articles[articleId];
-        document.getElementById('article-title').textContent = article.title[currentLang];
-        document.getElementById('article-content').textContent = article.content[currentLang];
+    if (window.location.pathname.includes('article.html')) {
+        loadArticle();
     }
 }
 
@@ -125,20 +121,64 @@ function updateLanguage() {
 function loadWrittenNews() {
     const grid = document.getElementById('written-news-grid');
     grid.innerHTML = '';
+    const allArticles = [];
+    // Load static articles
     Object.keys(articles).forEach(id => {
-        const article = articles[id];
+        allArticles.push({id, ...articles[id]});
+    });
+    // Load articles from localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('article_')) {
+            const article = JSON.parse(localStorage.getItem(key));
+            allArticles.push({id: key, ...article});
+        }
+    }
+    // Render all articles
+    allArticles.forEach(item => {
+        const {id, title, content, image, type, author} = item;
+        const titleText = title[currentLang] || (typeof title === 'string' ? title : title.id) || 'No Title';
+        const contentPreview = (content[currentLang] || content.id || '').substring(0, 100) + '...';
         const card = document.createElement('div');
-        card.className = 'news-card';        card.dataset.id = id; // Add data-id to the card        card.innerHTML = `
-            <img src="${article.image}" style="width:100%; height:220px; object-fit:cover;" alt="${article.title[currentLang]}">
+        card.className = 'news-card';
+        card.dataset.id = id;
+        card.innerHTML = `
+            <img src="${image}" style="width:100%; height:220px; object-fit:cover;" alt="${titleText}">
             <div class="news-content">
-                <h3>${article.title[currentLang]}</h3>
-                <small>${article.type} • ${article.author} • NeulinkNews</small>
-                <p>${article.content[currentLang].substring(0, 100)}...</p>
+                <h3 data-lang-id="${typeof title === 'string' ? title : title.id}" data-lang-en="${typeof title === 'string' ? title : title.en}">${titleText}</h3>
+                <small>${type} • ${author} • NeulinkNews</small>
+                <p>${contentPreview}</p>
                 <button class="read-more" data-id="${id}" style="background:#0EA5E9; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; margin-top:10px;">Read More</button>
             </div>
         `;
         grid.appendChild(card);
+        card.querySelector('.read-more').addEventListener('click', () => {
+            window.location.href = `article.html?id=${id}`;
+        });
     });
+}
+
+// Load article detail
+function loadArticle() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = urlParams.get('id');
+    let article = null;
+    if (articleId) {
+        if (articles[articleId]) {
+            article = articles[articleId];
+        } else if (articleId.startsWith('article_')) {
+            article = JSON.parse(localStorage.getItem(articleId));
+        }
+    }
+    if (article) {
+        document.getElementById('article-title').textContent = article.title[currentLang] || (typeof article.title === 'string' ? article.title : article.title.id) || 'No Title';
+        document.getElementById('article-image').src = article.image;
+        document.getElementById('article-type').textContent = article.type;
+        document.getElementById('article-author').textContent = article.author;
+        document.getElementById('article-content').textContent = article.content[currentLang] || article.content.id || '';
+    } else {
+        document.getElementById('article-title').textContent = 'Article not found';
+    }
 }
 
 // CMS form submit
@@ -174,4 +214,7 @@ if (savedArticles) {
 document.addEventListener('DOMContentLoaded', () => {
     loadWrittenNews();
     updateLanguage();
+    if (window.location.pathname.includes('article.html')) {
+        loadArticle();
+    }
 });
