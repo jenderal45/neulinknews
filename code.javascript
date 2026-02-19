@@ -211,7 +211,7 @@ if (savedArticles) {
 }
 
 // Initial load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => 
     loadWrittenNews();
     updateLanguage();
     if (window.location.pathname.includes('article.html')) {
