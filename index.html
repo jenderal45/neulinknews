@@ -380,7 +380,145 @@ footer{
 © 2025 NeulinkNews • Digital News Platform
 </footer>
 
-<script src="code.javascript"></script>
+<script>
+/* ===============================
+   NEULINKNEWS WRITER SYSTEM v2
+   =============================== */
+
+const cmsForm = document.getElementById("cms-form");
+const newsGrid = document.getElementById("written-news-grid");
+
+let articles = JSON.parse(localStorage.getItem("neulink_articles")) || [];
+
+/* ===============================
+   SAVE TO LOCAL STORAGE
+   =============================== */
+function saveArticles(){
+    localStorage.setItem("neulink_articles", JSON.stringify(articles));
+}
+
+/* ===============================
+   RENDER ARTICLES
+   =============================== */
+function renderArticles(){
+    newsGrid.innerHTML = "";
+
+    if(articles.length === 0){
+        newsGrid.innerHTML = "<p style='opacity:.7'>Belum ada artikel.</p>";
+        return;
+    }
+
+    articles.reverse().forEach((article,index)=>{
+
+        const card = document.createElement("div");
+        card.className = "news-card";
+
+        card.innerHTML = `
+            ${article.image ? `<img src="${article.image}" style="width:100%; height:200px; object-fit:cover;">` : ""}
+            <div class="news-content">
+                <h3>${article.title}</h3>
+                <small>${article.type} • ${article.author}</small>
+                <p>${article.content.substring(0,120)}...</p>
+                <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                    <button onclick="readArticle(${index})" style="background:#0EA5E9;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Baca</button>
+                    <button onclick="likeArticle(${index})" style="background:#1e293b;border:1px solid #0EA5E9;padding:6px 12px;border-radius:5px;color:#0EA5E9;cursor:pointer;">❤️ ${article.likes || 0}</button>
+                </div>
+                <div style="margin-top:15px;">
+                    <input placeholder="Tulis komentar..." id="comment-${index}" style="width:100%;padding:5px;border-radius:5px;border:1px solid #0EA5E9;background:#0f172a;color:white;">
+                    <button onclick="addComment(${index})" style="margin-top:5px;background:#0EA5E9;border:none;padding:5px 10px;border-radius:5px;color:white;cursor:pointer;">Komentar</button>
+                    <div id="comments-${index}" style="margin-top:10px;font-size:13px;opacity:.8;"></div>
+                </div>
+            </div>
+        `;
+
+        newsGrid.appendChild(card);
+
+        renderComments(index);
+    });
+}
+
+/* ===============================
+   ADD ARTICLE
+   =============================== */
+cmsForm.addEventListener("submit",function(e){
+    e.preventDefault();
+
+    const newArticle = {
+        title: document.getElementById("article-title").value,
+        type: document.getElementById("article-type").value,
+        author: document.getElementById("article-author").value,
+        image: document.getElementById("article-image").value,
+        content: document.getElementById("article-content").value,
+        likes: 0,
+        comments: []
+    };
+
+    articles.push(newArticle);
+    saveArticles();
+    renderArticles();
+    cmsForm.reset();
+});
+
+/* ===============================
+   READ FULL ARTICLE
+   =============================== */
+function readArticle(index){
+    const article = articles.reverse()[index];
+    alert(article.title + "\n\n" + article.content);
+}
+
+/* ===============================
+   LIKE SYSTEM
+   =============================== */
+function likeArticle(index){
+    articles[index].likes++;
+    saveArticles();
+    renderArticles();
+}
+
+/* ===============================
+   COMMENTS
+   =============================== */
+function addComment(index){
+    const input = document.getElementById("comment-"+index);
+    if(input.value.trim() === "") return;
+
+    articles[index].comments.push(input.value);
+    saveArticles();
+    renderArticles();
+}
+
+function renderComments(index){
+    const commentBox = document.getElementById("comments-"+index);
+    if(!commentBox) return;
+
+    commentBox.innerHTML = "";
+    articles[index].comments.forEach(c=>{
+        const p = document.createElement("div");
+        p.textContent = "• " + c;
+        commentBox.appendChild(p);
+    });
+}
+
+/* ===============================
+   MOBILE AUTO FIX
+   =============================== */
+function responsiveFix(){
+    if(window.innerWidth < 768){
+        document.querySelectorAll(".news-card iframe").forEach(el=>{
+            el.style.height = "200px";
+        });
+    }
+}
+window.addEventListener("resize", responsiveFix);
+responsiveFix();
+
+/* ===============================
+   INIT
+   =============================== */
+renderArticles();
+</script>
 </body>
 </html>
+
 
