@@ -3,310 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- ================= SEO BASIC ================= -->
 <title>NeulinkNews | Portal Berita Video Nasional</title>
-<meta name="description" content="NeulinkNews adalah portal berita video nasional yang menyajikan berita terkini, ekonomi, dan opini publik berbasis YouTube.">
-<meta name="keywords" content="NeulinkNews, berita video, portal berita nasional, ekonomi, opini publik">
-<meta name="author" content="NeulinkNews">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://jenderal45.github.io/neulinknews/">
-
-<!-- ================= GOOGLE ================= -->
-<meta name="googlebot" content="index, follow, max-image-preview:large">
-
-<!-- ================= OPEN GRAPH ================= -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="NeulinkNews | Portal Berita Video Nasional">
-<meta property="og:description" content="Portal berita berbasis video dari omnichannel resmi NeulinkNews.">
-<meta property="og:url" content="https://jenderal45.github.io/neulinknews/">
-<meta property="og:image" content="https://jenderal45.github.io/neulinknews/img/neulink-logo-saja.png">
-<meta property="og:site_name" content="NeulinkNews">
-
-<!-- ================= TWITTER / X ================= -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="NeulinkNews | Portal Berita Video Nasional">
-<meta name="twitter:description" content="Berita video nasional terkini dari NeulinkNews.">
-<meta name="twitter:image" content="https://jenderal45.github.io/neulinknews/img/neulink-logo-saja.png">
-
-<!-- ================= GEO ================= -->
-<meta name="geo.region" content="ID">
-<meta name="geo.country" content="Indonesia">
-
-<!-- ================= STRUCTURED DATA ================= -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NewsMediaOrganization",
-  "name": "NeulinkNews",
-  "url": "https://jenderal45.github.io/neulinknews/",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://jenderal45.github.io/neulinknews/img/neulink-logo-saja.png"
-  },
-  "sameAs": [
-    "https://www.youtube.com/@NeulinkNews",
-    "https://www.instagram.com/neulinknews/",
-    "https://www.tiktok.com/@neulinknews"
-  ]
-}
-</script>
-
 <style>
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
-
-/* BASE */
-body{
-    font-family:'Segoe UI',Tahoma,sans-serif;
-    background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
-    color:#e5e7eb;
-    line-height:1.6;
-    min-height: 100vh;
-}
-
-/* ================= HEADER ================= */
-header{
-    position:sticky;
-    top:0;
-    z-index:999;
-    background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-    padding:18px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:2px solid #0EA5E9;
-    flex-wrap:wrap;
-    box-shadow: 0 4px 20px rgba(14,165,233,0.3);
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.brand img{height:48px}
-
-.brand-text{
-    display:flex;
-    flex-direction:column;
-}
-
-.brand-text h1{
-    color:#0EA5E9;
-    font-size:26px;
-    font-weight:800;
-}
-
-.tagline{
-    font-size:12px;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
-    color:#38BDF8;
-}
-
-/* NAV */
-nav{display:flex;flex-wrap:wrap}
-nav a{
-    color:#e5e7eb;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:500;
-}
-nav a:hover{color:#38BDF8}
-
-/* ================= CONTENT ================= */
-.container{
-    padding:50px 40px;
-    max-width:1200px;
-    margin:auto;
-}
-
-.headline{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.headline h2{
-    font-size:34px;
-    color:#0EA5E9;
-    text-shadow: 0 0 20px rgba(14,165,233,0.5);
-}
-
-.headline p{
-    color:#94A3B8;
-    margin-top:10px;
-}
-
-/* ================= VIDEO GRID ================= */
-.news-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-}
-
-.news-card{
-    background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-    border-radius:14px;
-    overflow:hidden;
-    border:1px solid rgba(14,165,233,.6);
-    box-shadow: 0 8px 32px rgba(14,165,233,0.2);
-    transition:.3s;
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.news-card:hover{
-    transform:translateY(-10px) scale(1.02);
-    box-shadow:0 20px 50px rgba(14,165,233,.4);
-}
-
-.news-card iframe{
-    width:100%;
-    height:220px;
-    border:none;
-}
-
-.news-content{padding:20px}
-
-.news-content h3{
-    color:#38BDF8;
-    font-size:18px;
-}
-
-.news-content small{color:#94A3B8}
-
-.news-content p{margin-top:10px}
-
-/* ================= SOCIAL FEEDS ================= */
-.social-feeds{
-    margin-top:70px;
-    text-align:center;
-}
-
-.social-feeds h3{
-    color:#0EA5E9;
-    margin-bottom:25px;
-    font-size:28px;
-}
-
-.feed-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
-    gap:30px;
-    margin-top:40px;
-}
-
-.feed-card{
-    background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-    border-radius:14px;
-    padding:20px;
-    border:1px solid rgba(14,165,233,.6);
-    box-shadow: 0 8px 32px rgba(14,165,233,0.2);
-}
-
-.feed-card h4{
-    color:#38BDF8;
-    margin-bottom:15px;
-}
-
-/* ================= SOCIAL ================= */
-.social-section{
-    margin-top:70px;
-    text-align:center;
-}
-
-.social-section h3{
-    color:#0EA5E9;
-    margin-bottom:25px;
-}
-
-.social-links{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.social-links a{
-    padding:14px 34px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-    color:white;
-}
-
-.yt{background:#FF0000}
-.ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}
-.tt{background:#000}
-
-/* ================= FOOTER ================= */
-footer{
-    margin-top:80px;
-    padding:25px;
-    text-align:center;
-    border-top:1px solid #0EA5E9;
-    color:#94A3B8;
-}
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-    header{padding:15px 20px; flex-direction:column; text-align:center;}
-    .brand{flex-direction:column; gap:10px;}
-    .brand-text h1{font-size:24px;}
-    nav{justify-content:center; margin-top:10px;}
-    nav a{margin:0 8px; font-size:14px;}
-    #lang-toggle{margin-left:0; margin-top:10px;}
-    .container{padding:20px 15px;}
-    .headline h2{font-size:24px;}
-    .news-grid{grid-template-columns:1fr; gap:20px;}
-    .feed-grid{grid-template-columns:1fr; gap:20px;}
-    .social-links{flex-direction:column; gap:10px;}
-    .social-links a{padding:12px 20px; font-size:14px;}
-    .cms-section form{max-width:100%;}
-    #article-content{height:120px;}
-}
-
-/* ANIMATIONS */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background: linear-gradient(135deg,#020617 0%,#0f172a 50%,#1e293b 100%);color:#e5e7eb;line-height:1.6;min-height:100vh;}
+header{position:sticky;top:0;z-index:999;background: linear-gradient(135deg,#020617 0%,#0f172a 100%);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0EA5E9;flex-wrap:wrap;box-shadow:0 4px 20px rgba(14,165,233,0.3);}
+.brand{display:flex;align-items:center;gap:14px;}
+.brand img{height:48px;}
+.brand-text{display:flex;flex-direction:column;}
+.brand-text h1{color:#0EA5E9;font-size:26px;font-weight:800;}
+.tagline{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#38BDF8;}
+nav{display:flex;flex-wrap:wrap;}
+nav a{color:#e5e7eb;text-decoration:none;margin-left:20px;font-weight:500;cursor:pointer;}
+nav a:hover{color:#38BDF8;}
+.container{padding:50px 40px;max-width:1200px;margin:auto;}
+.headline{text-align:center;margin-bottom:50px;}
+.headline h2{font-size:34px;color:#0EA5E9;text-shadow:0 0 20px rgba(14,165,233,0.5);}
+.headline p{color:#94A3B8;margin-top:10px;}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;}
+.news-card{background: linear-gradient(135deg,#020617 0%,#0f172a 100%);border-radius:14px;overflow:hidden;border:1px solid rgba(14,165,233,.6);box-shadow:0 8px 32px rgba(14,165,233,0.2);transition:.3s;}
+.news-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 20px 50px rgba(14,165,233,.4);}
+.news-card iframe, .news-card img{width:100%;height:220px;border:none;object-fit:cover;}
+.news-content{padding:20px;}
+.news-content h3{color:#38BDF8;font-size:18px;}
+.news-content small{color:#94A3B8;}
+.news-content p{margin-top:10px;}
+.social-section{margin-top:70px;text-align:center;}
+.social-section h3{color:#0EA5E9;margin-bottom:25px;}
+.social-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.social-links a{padding:14px 34px;border-radius:30px;text-decoration:none;font-weight:bold;color:white;}
+.yt{background:#FF0000;}
+.ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);}
+.tt{background:#000;}
+footer{margin-top:80px;padding:25px;text-align:center;border-top:1px solid #0EA5E9;color:#94A3B8;}
+#login-panel, .cms-section{margin-top:50px;text-align:center;}
+.cms-section form, #login-panel form{max-width:600px;margin:auto;}
+.cms-section input, .cms-section select, .cms-section textarea, #login-panel input{width:100%;padding:10px;margin-bottom:10px;border-radius:5px;border:1px solid #0EA5E9;background:#0f172a;color:#e5e7eb;}
+.cms-section button, #login-panel button,#logout-btn{padding:10px 20px;background:#0EA5E9;color:white;border:none;border-radius:5px;cursor:pointer;}
+#logout-btn{background:#F43F5E;margin-top:10px;}
+@media(max-width:768px){header{padding:15px 20px;flex-direction:column;text-align:center;} .brand{flex-direction:column;gap:10px;} .brand-text h1{font-size:24px;} nav{justify-content:center;margin-top:10px;} nav a{margin:0 8px;font-size:14px;} .container{padding:20px 15px;} .headline h2{font-size:24px;} .news-grid{grid-template-columns:1fr;gap:20px;} .social-links{flex-direction:column;gap:10px;} .social-links a{padding:12px 20px;font-size:14px;}}
 </style>
 </head>
-
 <body>
 
 <header>
-    <div class="brand">
-        <img src="img/neulink-logo-saja.png" alt="NeulinkNews Logo">
-        <div class="brand-text">
-            <h1>NeulinkNews</h1>
-            <span class="tagline">for all everyone</span>
-        </div>
-    </div>
-    <nav>
-        <a href="#" data-lang-id="Home" data-lang-en="Home">Home</a>
-        <a href="https://www.youtube.com/@NeulinkNews" target="_blank" data-lang-id="YouTube" data-lang-en="YouTube">YouTube</a>
-        <a href="https://www.instagram.com/neulinknews/" target="_blank" data-lang-id="Instagram" data-lang-en="Instagram">Instagram</a>
-        <a href="https://www.tiktok.com/@neulinknews" target="_blank" data-lang-id="TikTok" data-lang-en="TikTok">TikTok</a>
-        <button id="lang-toggle" style="margin-left:20px; background:#0EA5E9; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">EN</button>
-    </nav>
+<div class="brand">
+<img src="img/neulink-logo-saja.png" alt="NeulinkNews Logo">
+<div class="brand-text"><h1>NeulinkNews</h1><span class="tagline">for all everyone</span></div>
+</div>
+<nav>
+<a href="#">Home</a>
+<a href="https://www.youtube.com/@NeulinkNews" target="_blank">YouTube</a>
+<a href="https://www.instagram.com/neulinknews/" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@neulinknews" target="_blank">TikTok</a>
+<a id="cms-nav">CMS</a>
+</nav>
 </header>
 
 <section class="container">
-
-<div class="headline">
-    <h2 data-lang-id="NeulinkNews" data-lang-en="NeulinkNews">NeulinkNews</h2>
-    <p data-lang-id="Portal berita berbasis video dari omnichannel resmi NeulinkNews" data-lang-en="Video-based news portal from NeulinkNews official omnichannel">Portal berita berbasis video dari omnichannel resmi NeulinkNews</p>
-</div>
-
+<div class="headline"><h2>NeulinkNews</h2><p>Portal berita berbasis video dari omnichannel resmi NeulinkNews</p></div>
 <div class="news-grid">
 
 <div class="news-card">
@@ -338,14 +93,37 @@ footer{
 
 </div>
 
-<div class="headline">
-    <h2 data-lang-id="Berita Tulis" data-lang-en="Written News">Berita Tulis</h2>
-    <p data-lang-id="Artikel berita terkini dalam bentuk tulisan." data-lang-en="Latest news articles in written form.">Artikel berita terkini dalam bentuk tulisan.</p>
+
+<div id="login-panel" style="display:none;">
+<h3>Login Penulis/Admin</h3>
+<form id="login-form">
+<input type="text" id="login-username" placeholder="Username" required>
+<input type="password" id="login-password" placeholder="Password" required>
+<button type="submit">Login</button>
+</form>
 </div>
 
-<div class="news-grid" id="written-news-grid">
-    <!-- Articles will be loaded here -->
+<div class="cms-section" style="display:none;">
+<h3>CMS Panel</h3>
+<form id="cms-form">
+<input type="hidden" id="edit-index">
+<input type="text" id="article-title" placeholder="Judul Artikel" required>
+<select id="article-type" required>
+<option value="" disabled selected>Jenis Berita</option>
+<option value="Fakta">Fakta</option>
+<option value="Opini">Opini</option>
+<option value="Analisis">Analisis</option>
+<option value="Laporan">Laporan</option>
+</select>
+<input type="text" id="article-image" placeholder="URL Gambar (Opsional)">
+<textarea id="article-content" placeholder="Isi Artikel" required></textarea>
+<button type="submit">Tambah / Update Berita</button>
+</form>
+<button id="logout-btn">Logout</button>
 </div>
+
+<div class="headline" style="margin-top:50px;"><h2>Berita Tulis Terbaru</h2></div>
+<div class="news-grid" id="written-news-grid"><p style="opacity:.7">Belum ada artikel.</p></div>
 
 <div class="social-section">
 <h3>Ikuti NeulinkNews</h3>
@@ -355,170 +133,99 @@ footer{
 <a href="https://www.tiktok.com/@neulinknews" class="tt">TikTok</a>
 </div>
 </div>
-
-<div class="cms-section" style="margin-top:70px; text-align:center;">
-    <h3 data-lang-id="Panel CMS untuk Penulis" data-lang-en="CMS Panel for Writers">Panel CMS untuk Penulis</h3>
-    <form id="cms-form" style="max-width:600px; margin:auto; margin-top:20px;">
-        <input type="text" id="article-title" placeholder="Judul Artikel" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #0EA5E9; background:#0f172a; color:#e5e7eb;">
-        <select id="article-type" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #0EA5E9; background:#0f172a; color:#e5e7eb;">
-            <option value="" disabled selected>Jenis Berita</option>
-            <option value="Fakta">Fakta</option>
-            <option value="Opini">Opini</option>
-            <option value="Analisis">Analisis</option>
-            <option value="Laporan">Laporan</option>
-        </select>
-        <input type="text" id="article-author" placeholder="Nama Penulis" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #0EA5E9; background:#0f172a; color:#e5e7eb;">
-        <input type="url" id="article-image" placeholder="URL Gambar (Opsional, Open Source)" style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #0EA5E9; background:#0f172a; color:#e5e7eb;">
-        <textarea id="article-content" placeholder="Isi Artikel" required style="width:100%; height:150px; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #0EA5E9; background:#0f172a; color:#e5e7eb;"></textarea>
-        <button type="submit" style="padding:10px 20px; background:#0EA5E9; color:white; border:none; border-radius:5px; cursor:pointer;">Tambah Berita</button>
-    </form>
-</div>
-
 </section>
 
-<footer>
-© 2025 NeulinkNews • Digital News Platform
-</footer>
+<footer>© 2025 NeulinkNews • Digital News Platform</footer>
 
 <script>
-/* ===============================
-   NEULINKNEWS WRITER SYSTEM v2
-   =============================== */
-
-const cmsForm = document.getElementById("cms-form");
-const newsGrid = document.getElementById("written-news-grid");
-
+// ===== DATA =====
 let articles = JSON.parse(localStorage.getItem("neulink_articles")) || [];
+let users = JSON.parse(localStorage.getItem("neulink_users")) || [
+{username:"admin",password:"admin",role:"admin"},
+{username:"penulis1",password:"1234",role:"writer"}
+];
+let loggedUser = null;
 
-/* ===============================
-   SAVE TO LOCAL STORAGE
-   =============================== */
-function saveArticles(){
-    localStorage.setItem("neulink_articles", JSON.stringify(articles));
-}
+// ===== DOM =====
+const cmsForm=document.getElementById("cms-form");
+const newsGrid=document.getElementById("written-news-grid");
+const loginForm=document.getElementById("login-form");
+const loginPanel=document.getElementById("login-panel");
+const cmsPanel=document.querySelector(".cms-section");
+const logoutBtn=document.getElementById("logout-btn");
+const cmsNav=document.getElementById("cms-nav");
 
-/* ===============================
-   RENDER ARTICLES
-   =============================== */
+// ===== FUNCTIONS =====
+function saveArticles(){localStorage.setItem("neulink_articles",JSON.stringify(articles));}
+
 function renderArticles(){
-    newsGrid.innerHTML = "";
-
-    if(articles.length === 0){
-        newsGrid.innerHTML = "<p style='opacity:.7'>Belum ada artikel.</p>";
-        return;
-    }
-
-    articles.reverse().forEach((article,index)=>{
-
-        const card = document.createElement("div");
-        card.className = "news-card";
-
-        card.innerHTML = `
-            ${article.image ? `<img src="${article.image}" style="width:100%; height:200px; object-fit:cover;">` : ""}
-            <div class="news-content">
-                <h3>${article.title}</h3>
-                <small>${article.type} • ${article.author}</small>
-                <p>${article.content.substring(0,120)}...</p>
-                <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-                    <button onclick="readArticle(${index})" style="background:#0EA5E9;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Baca</button>
-                    <button onclick="likeArticle(${index})" style="background:#1e293b;border:1px solid #0EA5E9;padding:6px 12px;border-radius:5px;color:#0EA5E9;cursor:pointer;">❤️ ${article.likes || 0}</button>
-                </div>
-                <div style="margin-top:15px;">
-                    <input placeholder="Tulis komentar..." id="comment-${index}" style="width:100%;padding:5px;border-radius:5px;border:1px solid #0EA5E9;background:#0f172a;color:white;">
-                    <button onclick="addComment(${index})" style="margin-top:5px;background:#0EA5E9;border:none;padding:5px 10px;border-radius:5px;color:white;cursor:pointer;">Komentar</button>
-                    <div id="comments-${index}" style="margin-top:10px;font-size:13px;opacity:.8;"></div>
-                </div>
-            </div>
-        `;
-
-        newsGrid.appendChild(card);
-
-        renderComments(index);
-    });
+newsGrid.innerHTML="";
+if(articles.length===0){newsGrid.innerHTML="<p style='opacity:.7'>Belum ada artikel.</p>";return;}
+articles.slice().reverse().forEach((article,index)=>{
+const card=document.createElement("div"); card.className="news-card";
+let adminButtons="";
+if(loggedUser){
+if(loggedUser.role==="admin" || article.author===loggedUser.username){
+adminButtons=`
+<button onclick="editArticle(${index})" style="background:#FBBF24;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Edit</button>
+<button onclick="deleteArticle(${index})" style="background:#F43F5E;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Hapus</button>`;
 }
-
-/* ===============================
-   ADD ARTICLE
-   =============================== */
-cmsForm.addEventListener("submit",function(e){
-    e.preventDefault();
-
-    const newArticle = {
-        title: document.getElementById("article-title").value,
-        type: document.getElementById("article-type").value,
-        author: document.getElementById("article-author").value,
-        image: document.getElementById("article-image").value,
-        content: document.getElementById("article-content").value,
-        likes: 0,
-        comments: []
-    };
-
-    articles.push(newArticle);
-    saveArticles();
-    renderArticles();
-    cmsForm.reset();
+}
+card.innerHTML=`${article.image?`<img src="${article.image}">`:""}
+<div class="news-content">
+<h3>${article.title}</h3>
+<small>${article.type} • ${article.author}</small>
+<p>${article.content.substring(0,120)}...</p>
+<div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+<button onclick="readArticle(${index})" style="background:#0EA5E9;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Baca</button>
+<button onclick="likeArticle(${index})" style="background:#1e293b;border:1px solid #0EA5E9;padding:6px 12px;border-radius:5px;color:#0EA5E9;cursor:pointer;">❤️ ${article.likes||0}</button>
+${adminButtons}
+</div>
+</div>`;
+newsGrid.appendChild(card);
 });
 
-/* ===============================
-   READ FULL ARTICLE
-   =============================== */
-function readArticle(index){
-    const article = articles.reverse()[index];
-    alert(article.title + "\n\n" + article.content);
 }
 
-/* ===============================
-   LIKE SYSTEM
-   =============================== */
-function likeArticle(index){
-    articles[index].likes++;
-    saveArticles();
-    renderArticles();
-}
+cmsForm.addEventListener("submit",function(e){
+e.preventDefault();
+const index=document.getElementById("edit-index").value;
+const articleData={
+title:document.getElementById("article-title").value,
+type:document.getElementById("article-type").value,
+author:loggedUser.username,
+image:document.getElementById("article-image").value,
+content:document.getElementById("article-content").value,
+likes:index!==""?articles[index].likes:0
+};
+if(index===""){articles.push(articleData);} 
+else{articles[index]=articleData;}
+saveArticles();renderArticles();cmsForm.reset();document.getElementById("edit-index").value="";
+});
 
-/* ===============================
-   COMMENTS
-   =============================== */
-function addComment(index){
-    const input = document.getElementById("comment-"+index);
-    if(input.value.trim() === "") return;
+function likeArticle(index){articles[index].likes++;saveArticles();renderArticles();}
+function readArticle(index){const article=articles.slice().reverse()[index];alert(article.title+"\n\n"+article.content);}
+function deleteArticle(index){if(confirm("Apakah Anda yakin ingin menghapus berita ini?")){articles.splice(index,1);saveArticles();renderArticles();}}
+function editArticle(index){const article=articles[index];document.getElementById("article-title").value=article.title;document.getElementById("article-type").value=article.type;document.getElementById("article-image").value=article.image;document.getElementById("article-content").value=article.content;document.getElementById("edit-index").value=index;cmsPanel.style.display="block";window.scrollTo(0,0);}
 
-    articles[index].comments.push(input.value);
-    saveArticles();
-    renderArticles();
-}
+// ===== LOGIN =====
+loginForm.addEventListener("submit",function(e){
+e.preventDefault();
+const username=document.getElementById("login-username").value;
+const password=document.getElementById("login-password").value;
+const user=users.find(u=>u.username===username && u.password===password);
+if(user){loggedUser=user;loginPanel.style.display="none";cmsPanel.style.display="block";alert("Login berhasil! Selamat menulis, "+user.username);}
+else {alert("Username atau password salah!");}
+});
 
-function renderComments(index){
-    const commentBox = document.getElementById("comments-"+index);
-    if(!commentBox) return;
+logoutBtn.addEventListener("click",function(){loggedUser=null;cmsPanel.style.display="none";loginPanel.style.display="none";renderArticles();});
 
-    commentBox.innerHTML = "";
-    articles[index].comments.forEach(c=>{
-        const p = document.createElement("div");
-        p.textContent = "• " + c;
-        commentBox.appendChild(p);
-    });
-}
+cmsNav.addEventListener("click",function(){
+if(loggedUser){cmsPanel.style.display=cmsPanel.style.display==="none"?"block":"none";loginPanel.style.display="none";} 
+else {loginPanel.style.display=loginPanel.style.display==="none"?"block":"none";cmsPanel.style.display="none";}
+});
 
-/* ===============================
-   MOBILE AUTO FIX
-   =============================== */
-function responsiveFix(){
-    if(window.innerWidth < 768){
-        document.querySelectorAll(".news-card iframe").forEach(el=>{
-            el.style.height = "200px";
-        });
-    }
-}
-window.addEventListener("resize", responsiveFix);
-responsiveFix();
-
-/* ===============================
-   INIT
-   =============================== */
 renderArticles();
 </script>
 </body>
 </html>
-
-
