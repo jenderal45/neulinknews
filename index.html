@@ -9,53 +9,88 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 
 <style>
-/* (CSS sama dengan kode sebelumnya) */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:#0f172a;color:#e5e7eb;line-height:1.6;min-height:100vh;}
+header{position:sticky;top:0;z-index:999;background:#020617;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0EA5E9;flex-wrap:wrap;box-shadow:0 4px 20px rgba(14,165,233,0.3);}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand img{height:45px;}
+.brand-text h1{color:#0EA5E9;font-size:24px;font-weight:800;}
+.tagline{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#38BDF8;}
+nav{display:flex;flex-wrap:wrap;gap:10px;}
+nav a{color:#e5e7eb;text-decoration:none;font-weight:500;}
+nav a:hover{color:#38BDF8;cursor:pointer;}
+.container{padding:40px 20px;max-width:1200px;margin:auto;}
+.headline{text-align:center;margin-bottom:40px;}
+.headline h2{font-size:28px;color:#0EA5E9;text-shadow:0 0 10px rgba(14,165,233,0.5);}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.news-card{background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid rgba(14,165,233,.6);box-shadow:0 5px 20px rgba(14,165,233,0.2);transition:.3s;}
+.news-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(14,165,233,.4);}
+.news-card iframe, .news-card img{width:100%;height:200px;object-fit:cover;border:none;}
+.news-content{padding:15px;}
+.news-content h3{color:#38BDF8;font-size:18px;}
+.news-content small{color:#94A3B8;}
+.news-content p{margin-top:8px;font-size:14px;}
+button{padding:6px 12px;border:none;border-radius:5px;cursor:pointer;font-size:13px;}
+#login-panel,.cms-section{margin-top:30px;text-align:center;}
+.cms-section form,#login-panel form{max-width:500px;margin:auto;display:flex;flex-direction:column;gap:8px;}
+.cms-section input,#cms-form textarea,#login-panel input,select{padding:8px;border-radius:5px;border:1px solid #0EA5E9;background:#0f172a;color:#e5e7eb;width:100%;}
+#logout-btn{background:#F43F5E;margin-top:10px;color:white;}
+@media(max-width:768px){header{padding:15px 15px;flex-direction:column;text-align:center;} nav{justify-content:center;} .brand-text h1{font-size:20px;} .news-card iframe,.news-card img{height:180px;}}
 </style>
 </head>
 <body>
 
 <header>
-  <!-- Navbar sama -->
+<div class="brand">
+<img src="img/neulink-logo-saja.png" alt="NeulinkNews Logo">
+<div class="brand-text"><h1>NeulinkNews</h1><span class="tagline">for all everyone</span></div>
+</div>
+<nav>
+<a href="#">Home</a>
+<a href="https://www.youtube.com/@NeulinkNews" target="_blank">YouTube</a>
+<a href="https://www.instagram.com/neulinknews/" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@neulinknews" target="_blank">TikTok</a>
+<a id="cms-nav">CMS</a>
+</nav>
 </header>
 
 <section class="container">
-<div class="headline"><h2>NeulinkNews</h2>
-<p>Portal berita berbasis video dari omnichannel resmi NeulinkNews</p></div>
-
+<div class="headline"><h2>NeulinkNews</h2><p>Portal berita berbasis video dari omnichannel resmi NeulinkNews</p></div>
 <div class="news-grid" id="written-news-grid"></div>
 
+<!-- LOGIN PANEL -->
 <div id="login-panel" style="display:none;">
-  <h3>Login Penulis/Admin</h3>
-  <form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required>
-    <input type="password" id="login-password" placeholder="Password" required>
-    <button type="submit">Login</button>
-  </form>
+<h3>Login Penulis/Admin</h3>
+<form id="login-form">
+<input type="email" id="login-email" placeholder="Email" required>
+<input type="password" id="login-password" placeholder="Password" required>
+<button type="submit">Login</button>
+</form>
 </div>
 
+<!-- CMS PANEL -->
 <div class="cms-section" style="display:none;">
-  <h3>CMS Panel</h3>
-  <form id="cms-form">
-    <input type="hidden" id="edit-id">
-    <input type="text" id="article-title" placeholder="Judul Artikel" required>
-    <select id="article-type" required>
-      <option value="" disabled selected>Jenis Berita</option>
-      <option value="Fakta">Fakta</option>
-      <option value="Opini">Opini</option>
-      <option value="Analisis">Analisis</option>
-      <option value="Laporan">Laporan</option>
-    </select>
-    <input type="text" id="article-video" placeholder="URL Video YouTube (embed link)">
-    <textarea id="article-content" placeholder="Isi Artikel" required></textarea>
-    <button type="submit">Tambah / Update Berita</button>
-  </form>
-  <button id="logout-btn">Logout</button>
+<h3>CMS Panel</h3>
+<form id="cms-form">
+<input type="hidden" id="edit-id">
+<input type="text" id="article-title" placeholder="Judul Artikel" required>
+<select id="article-type" required>
+<option value="" disabled selected>Jenis Berita</option>
+<option value="Fakta">Fakta</option>
+<option value="Opini">Opini</option>
+<option value="Analisis">Analisis</option>
+<option value="Laporan">Laporan</option>
+</select>
+<input type="text" id="article-video" placeholder="URL Video YouTube (embed link)">
+<textarea id="article-content" placeholder="Isi Artikel" required></textarea>
+<button type="submit">Tambah / Update Berita</button>
+</form>
+<button id="logout-btn">Logout</button>
 </div>
 
-<footer>© 2025 NeulinkNews • Digital News Platform</footer>
+<footer style="margin-top:50px;padding:20px;text-align:center;border-top:1px solid #0EA5E9;color:#94A3B8;">© 2025 NeulinkNews • Digital News Platform</footer>
 
 <script>
-// ===== SUPABASE CONFIG =====
 const SUPABASE_URL = "https://cyaupqqfhnolidlppaoa.supabase.co";
 const SUPABASE_KEY = "sb_publishable_0RFPlvRxS2VtG2WfRyRwFw_Ls0z87ll";
 const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -87,12 +122,10 @@ async function renderArticles() {
     card.className = "news-card";
 
     let adminButtons = "";
-    if(loggedUser) {
-      if(loggedUser.role === "admin" || article.author === loggedUser.email) {
-        adminButtons = `
-          <button onclick="editArticle('${article.id}')">Edit</button>
-          <button onclick="deleteArticle('${article.id}')">Hapus</button>
-        `;
+    if(loggedUser){
+      if(loggedUser.role==="admin" || article.author===loggedUser.email){
+        adminButtons = `<button onclick="editArticle('${article.id}')">Edit</button>
+                        <button onclick="deleteArticle('${article.id}')">Hapus</button>`;
       }
     }
 
@@ -101,13 +134,12 @@ async function renderArticles() {
       <div class="news-content">
         <h3>${article.title}</h3>
         <small>${article.type} • ${article.author}</small>
-        <p>${article.content.substring(0, 120)}...</p>
+        <p>${article.content.substring(0,120)}...</p>
         <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;">
           ${adminButtons}
         </div>
       </div>
     `;
-
     newsGrid.appendChild(card);
   });
 }
@@ -116,7 +148,6 @@ async function renderArticles() {
 cmsForm.addEventListener("submit", async e => {
   e.preventDefault();
   const editId = document.getElementById("edit-id").value;
-
   const articleData = {
     title: document.getElementById("article-title").value,
     type: document.getElementById("article-type").value,
@@ -125,19 +156,16 @@ cmsForm.addEventListener("submit", async e => {
     author: loggedUser.email
   };
 
-  if(editId === "") {
-    await supabase.from("articles").insert([articleData]);
-  } else {
-    await supabase.from("articles").update(articleData).eq("id", editId);
-  }
+  if(editId==="") await supabase.from("articles").insert([articleData]);
+  else await supabase.from("articles").update(articleData).eq("id", editId);
 
   cmsForm.reset();
-  document.getElementById("edit-id").value = "";
+  document.getElementById("edit-id").value="";
   renderArticles();
 });
 
 // ===== EDIT & DELETE =====
-async function editArticle(id) {
+async function editArticle(id){
   const { data } = await supabase.from("articles").select("*").eq("id", id).single();
   if(data){
     document.getElementById("article-title").value = data.title;
@@ -145,53 +173,57 @@ async function editArticle(id) {
     document.getElementById("article-video").value = data.video;
     document.getElementById("article-content").value = data.content;
     document.getElementById("edit-id").value = data.id;
-    cmsPanel.style.display = "block";
+    cmsPanel.style.display="block";
   }
 }
 
-async function deleteArticle(id) {
-  if(confirm("Apakah yakin ingin menghapus artikel ini?")) {
+async function deleteArticle(id){
+  if(confirm("Apakah yakin ingin menghapus artikel ini?")){
     await supabase.from("articles").delete().eq("id", id);
     renderArticles();
   }
 }
 
 // ===== LOGIN & LOGOUT =====
-loginForm.addEventListener("submit", async e => {
+loginForm.addEventListener("submit", async e=>{
   e.preventDefault();
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
-
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if(error){ alert(error.message); return; }
 
-  loggedUser = {
-    email: data.user.email,
-    role: email === "admin@neulink.com" ? "admin" : "writer"
-  };
-
-  loginPanel.style.display = "none";
-  cmsPanel.style.display = "block";
+  loggedUser = { email: data.user.email, role: email==="admin@neulink.com"?"admin":"writer" };
+  loginPanel.style.display="none";
+  cmsPanel.style.display="block";
   renderArticles();
 });
 
-logoutBtn.addEventListener("click", async () => {
+logoutBtn.addEventListener("click", async ()=>{
   await supabase.auth.signOut();
-  loggedUser = null;
-  cmsPanel.style.display = "none";
-  loginPanel.style.display = "block";
+  loggedUser=null;
+  cmsPanel.style.display="none";
+  loginPanel.style.display="block";
   renderArticles();
 });
 
-cmsNav.addEventListener("click", () => {
-  if(loggedUser) {
-    cmsPanel.style.display = cmsPanel.style.display === "none" ? "block" : "none";
-    loginPanel.style.display = "none";
+// ===== CMS NAV CLICK =====
+cmsNav.addEventListener("click", ()=>{
+  if(loggedUser){
+    cmsPanel.style.display = cmsPanel.style.display==="none"?"block":"none";
+    loginPanel.style.display="none";
   } else {
-    loginPanel.style.display = loginPanel.style.display === "none" ? "block" : "none";
-    cmsPanel.style.display = "none";
+    loginPanel.style.display = loginPanel.style.display==="none"?"block":"none";
+    cmsPanel.style.display="none";
   }
 });
+
+// ===== REALTIME ARTICLES =====
+supabase
+  .channel('articles_channel')
+  .on('postgres_changes', { event:'*', schema:'public', table:'articles' }, payload=>{
+    renderArticles();
+  })
+  .subscribe();
 
 renderArticles();
 </script>
