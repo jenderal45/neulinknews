@@ -62,37 +62,35 @@ footer{margin-top:80px;padding:25px;text-align:center;border-top:1px solid #0EA5
 
 <section class="container">
 <div class="headline"><h2>NeulinkNews</h2><p>Portal berita berbasis video dari omnichannel resmi NeulinkNews</p></div>
-<div class="news-grid">
 
+<div class="news-grid">
 <div class="news-card">
 <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvN6J9xKQD1IbqVearTOxJ_R" allowfullscreen></iframe>
 <div class="news-content">
-<h3 data-lang-id="Berita Nasional Terkini" data-lang-en="Latest National News">Berita Nasional Terkini</h3>
+<h3>Berita Nasional Terkini</h3>
 <small>YouTube • NeulinkNews</small>
-<p data-lang-id="Liputan aktual isu nasional dan kebijakan publik." data-lang-en="Actual coverage of national issues and public policies.">Liputan aktual isu nasional dan kebijakan publik.</p>
+<p>Liputan aktual isu nasional dan kebijakan publik.</p>
 </div>
 </div>
 
 <div class="news-card">
 <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvPVn7dDA3PhUcsDJlyBj2VQ" allowfullscreen></iframe>
 <div class="news-content">
-<h3 data-lang-id="Ekonomi & Bisnis" data-lang-en="Economy & Business">Ekonomi & Bisnis</h3>
+<h3>Ekonomi & Bisnis</h3>
 <small>YouTube • NeulinkNews</small>
-<p data-lang-id="Analisis ekonomi, dunia usaha, dan UMKM." data-lang-en="Economic analysis, business world, and SMEs.">Analisis ekonomi, dunia usaha, dan UMKM.</p>
+<p>Analisis ekonomi, dunia usaha, dan UMKM.</p>
 </div>
 </div>
 
 <div class="news-card">
 <iframe src="https://www.youtube.com/embed/videoseries?list=PLJZGZzMzNXvMWu7T5fEB1u8MJ0qTU54VD" allowfullscreen></iframe>
 <div class="news-content">
-<h3 data-lang-id="Opini & Filsafat Publik" data-lang-en="Opinion & Public Philosophy">Opini & Filsafat Publik</h3>
+<h3>Opini & Filsafat Publik</h3>
 <small>YouTube • NeulinkNews</small>
-<p data-lang-id="Diskusi pemikiran kritis dan refleksi kebangsaan." data-lang-en="Discussion of critical thinking and national reflection.">Diskusi pemikiran kritis dan refleksi kebangsaan.</p>
+<p>Diskusi pemikiran kritis dan refleksi kebangsaan.</p>
 </div>
 </div>
-
 </div>
-
 
 <div id="login-panel" style="display:none;">
 <h3>Login Penulis/Admin</h3>
@@ -137,98 +135,6 @@ footer{margin-top:80px;padding:25px;text-align:center;border-top:1px solid #0EA5
 
 <footer>© 2025 NeulinkNews • Digital News Platform</footer>
 
-<script>
-// ===== DATA =====
-let articles = JSON.parse(localStorage.getItem("neulink_articles")) || [];
-let users = JSON.parse(localStorage.getItem("neulink_users")) || [
-{username:"admin",password:"admin",role:"admin"},
-{username:"penulis1",password:"1234",role:"writer"}
-];
-let loggedUser = null;
-
-// ===== DOM =====
-const cmsForm=document.getElementById("cms-form");
-const newsGrid=document.getElementById("written-news-grid");
-const loginForm=document.getElementById("login-form");
-const loginPanel=document.getElementById("login-panel");
-const cmsPanel=document.querySelector(".cms-section");
-const logoutBtn=document.getElementById("logout-btn");
-const cmsNav=document.getElementById("cms-nav");
-
-// ===== FUNCTIONS =====
-function saveArticles(){localStorage.setItem("neulink_articles",JSON.stringify(articles));}
-
-function renderArticles(){
-newsGrid.innerHTML="";
-if(articles.length===0){newsGrid.innerHTML="<p style='opacity:.7'>Belum ada artikel.</p>";return;}
-articles.slice().reverse().forEach((article,index)=>{
-const card=document.createElement("div"); card.className="news-card";
-let adminButtons="";
-if(loggedUser){
-if(loggedUser.role==="admin" || article.author===loggedUser.username){
-adminButtons=`
-<button onclick="editArticle(${index})" style="background:#FBBF24;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Edit</button>
-<button onclick="deleteArticle(${index})" style="background:#F43F5E;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Hapus</button>`;
-}
-}
-card.innerHTML=`${article.image?`<img src="${article.image}">`:""}
-<div class="news-content">
-<h3>${article.title}</h3>
-<small>${article.type} • ${article.author}</small>
-<p>${article.content.substring(0,120)}...</p>
-<div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-<button onclick="readArticle(${index})" style="background:#0EA5E9;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Baca</button>
-<button onclick="likeArticle(${index})" style="background:#1e293b;border:1px solid #0EA5E9;padding:6px 12px;border-radius:5px;color:#0EA5E9;cursor:pointer;">❤️ ${article.likes||0}</button>
-${adminButtons}
-</div>
-</div>`;
-newsGrid.appendChild(card);
-});
-
-}
-
-cmsForm.addEventListener("submit",function(e){
-e.preventDefault();
-const index=document.getElementById("edit-index").value;
-const articleData={
-title:document.getElementById("article-title").value,
-type:document.getElementById("article-type").value,
-author:loggedUser.username,
-image:document.getElementById("article-image").value,
-content:document.getElementById("article-content").value,
-likes:index!==""?articles[index].likes:0
-};
-if(index===""){articles.push(articleData);} 
-else{articles[index]=articleData;}
-saveArticles();renderArticles();cmsForm.reset();document.getElementById("edit-index").value="";
-});
-
-function likeArticle(index){articles[index].likes++;saveArticles();renderArticles();}
-function readArticle(index){const article=articles.slice().reverse()[index];alert(article.title+"\n\n"+article.content);}
-function deleteArticle(index){if(confirm("Apakah Anda yakin ingin menghapus berita ini?")){articles.splice(index,1);saveArticles();renderArticles();}}
-function editArticle(index){const article=articles[index];document.getElementById("article-title").value=article.title;document.getElementById("article-type").value=article.type;document.getElementById("article-image").value=article.image;document.getElementById("article-content").value=article.content;document.getElementById("edit-index").value=index;cmsPanel.style.display="block";window.scrollTo(0,0);}
-
-// ===== LOGIN =====
-loginForm.addEventListener("submit",function(e){
-e.preventDefault();
-const username=document.getElementById("login-username").value;
-const password=document.getElementById("login-password").value;
-const user=users.find(u=>u.username===username && u.password===password);
-if(user){loggedUser=user;loginPanel.style.display="none";cmsPanel.style.display="block";alert("Login berhasil! Selamat menulis, "+user.username);}
-else {alert("Username atau password salah!");}
-});
-
-logoutBtn.addEventListener("click",function(){loggedUser=null;cmsPanel.style.display="none";loginPanel.style.display="none";renderArticles();});
-
-cmsNav.addEventListener("click",function(){
-if(loggedUser){cmsPanel.style.display=cmsPanel.style.display==="none"?"block":"none";loginPanel.style.display="none";} 
-else {loginPanel.style.display=loginPanel.style.display==="none"?"block":"none";cmsPanel.style.display="none";}
-});
-
-renderArticles();
-
-  <!-- Tambahkan ini di body, sebelum </body> -->
-
 <!-- MODAL READ ARTICLE -->
 <div id="read-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;overflow-y:auto;padding:50px 20px;">
     <div style="max-width:800px;margin:auto;background:#0f172a;padding:30px;border-radius:10px;position:relative;">
@@ -245,8 +151,114 @@ renderArticles();
     </div>
 </div>
 
+<script>
+// ===== DATA =====
+let articles = JSON.parse(localStorage.getItem("neulink_articles")) || [];
+let users = JSON.parse(localStorage.getItem("neulink_users")) || [
+    {username:"admin",password:"admin",role:"admin"},
+    {username:"penulis1",password:"1234",role:"writer"}
+];
+let loggedUser = null;
 
-// MODAL READ ARTICLE
+// ===== DOM =====
+const cmsForm=document.getElementById("cms-form");
+const newsGrid=document.getElementById("written-news-grid");
+const loginForm=document.getElementById("login-form");
+const loginPanel=document.getElementById("login-panel");
+const cmsPanel=document.querySelector(".cms-section");
+const logoutBtn=document.getElementById("logout-btn");
+const cmsNav=document.getElementById("cms-nav");
+
+// ===== FUNCTIONS =====
+function saveArticles(){localStorage.setItem("neulink_articles",JSON.stringify(articles));}
+
+function renderArticles(){
+    newsGrid.innerHTML="";
+    if(articles.length===0){newsGrid.innerHTML="<p style='opacity:.7'>Belum ada artikel.</p>";return;}
+    for(let i = articles.length-1; i>=0; i--){
+        const article = articles[i];
+        const card=document.createElement("div"); 
+        card.className="news-card";
+        let adminButtons="";
+        if(loggedUser){
+            if(loggedUser.role==="admin" || article.author===loggedUser.username){
+                adminButtons=`<button onclick="editArticle(${i})" style="background:#FBBF24;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Edit</button>
+                <button onclick="deleteArticle(${i})" style="background:#F43F5E;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Hapus</button>`;
+            }
+        }
+        card.innerHTML=`${article.image?`<img src="${article.image}">`:""}
+        <div class="news-content">
+        <h3>${article.title}</h3>
+        <small>${article.type} • ${article.author}</small>
+        <p>${article.content.substring(0,120)}...</p>
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+        <button onclick="readArticle(${i})" style="background:#0EA5E9;border:none;padding:6px 12px;border-radius:5px;color:white;cursor:pointer;">Baca</button>
+        <button onclick="likeArticle(${i})" style="background:#1e293b;border:1px solid #0EA5E9;padding:6px 12px;border-radius:5px;color:#0EA5E9;cursor:pointer;">❤️ ${article.likes||0}</button>
+        ${adminButtons}
+        </div>
+        </div>`;
+        newsGrid.appendChild(card);
+    }
+}
+
+// ===== CMS FORM =====
+cmsForm.addEventListener("submit",function(e){
+    e.preventDefault();
+    const index=document.getElementById("edit-index").value;
+    const articleData={
+        title:document.getElementById("article-title").value,
+        type:document.getElementById("article-type").value,
+        author:loggedUser.username,
+        image:document.getElementById("article-image").value,
+        content:document.getElementById("article-content").value,
+        likes:index!==""?articles[index].likes:0
+    };
+    if(index===""){articles.push(articleData);} 
+    else{articles[index]=articleData;}
+    saveArticles();renderArticles();cmsForm.reset();document.getElementById("edit-index").value="";
+});
+
+// ===== ARTICLE ACTIONS =====
+function likeArticle(index){articles[index].likes++;saveArticles();renderArticles();}
+function deleteArticle(index){
+    if(confirm("Apakah Anda yakin ingin menghapus berita ini?")){
+        articles.splice(index,1);saveArticles();renderArticles();
+    }
+}
+function editArticle(index){
+    const article=articles[index];
+    document.getElementById("article-title").value=article.title;
+    document.getElementById("article-type").value=article.type;
+    document.getElementById("article-image").value=article.image;
+    document.getElementById("article-content").value=article.content;
+    document.getElementById("edit-index").value=index;
+    cmsPanel.style.display="block";
+    window.scrollTo(0,0);
+}
+
+// ===== LOGIN =====
+loginForm.addEventListener("submit",function(e){
+    e.preventDefault();
+    const username=document.getElementById("login-username").value;
+    const password=document.getElementById("login-password").value;
+    const user=users.find(u=>u.username===username && u.password===password);
+    if(user){loggedUser=user;loginPanel.style.display="none";cmsPanel.style.display="block";alert("Login berhasil! Selamat menulis, "+user.username);}
+    else {alert("Username atau password salah!");}
+});
+
+logoutBtn.addEventListener("click",function(){loggedUser=null;cmsPanel.style.display="none";loginPanel.style.display="none";renderArticles();});
+
+cmsNav.addEventListener("click", function(){
+    if(loggedUser){
+        cmsPanel.style.display = cmsPanel.style.display==="none"?"block":"none";
+        loginPanel.style.display="none";
+    } else {
+        loginPanel.style.display = loginPanel.style.display==="none"?"block":"none";
+        cmsPanel.style.display="none";
+    }
+});
+
+// ===== MODAL READ =====
 const modal=document.getElementById("read-modal");
 const modalTitle=document.getElementById("modal-title");
 const modalAuthor=document.getElementById("modal-author");
@@ -270,12 +282,15 @@ function readArticle(index){
     shareWhatsApp.onclick = ()=>{window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + "\n" + pageUrl)}`);}
     shareTwitter.onclick = ()=>{window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(pageUrl)}`);}
     copyLink.onclick = ()=>{navigator.clipboard.writeText(pageUrl).then(()=>alert("Link artikel telah disalin!"));}
+
 }
 
 closeModal.onclick = ()=>{modal.style.display="none";}
-window.onclick = e=>{if(e.target===modal){modal.style.display="none";}}
-  
+window.onclick = e=>{if(e.target===modal) modal.style.display="none";}
+
+// ===== INITIAL RENDER =====
+renderArticles();
 </script>
+
 </body>
 </html>
-
